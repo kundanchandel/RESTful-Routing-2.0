@@ -8,7 +8,7 @@ mongoose.connect("mongodb://localhost/restful_blog_app");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(app.use(methodOverride('_method')))
+app.use(methodOverride('_method'))
 
 
 var blogSchema  = new mongoose.Schema({
@@ -94,7 +94,7 @@ app.get("/blogs/:id/edit", function(req, res){
 })
 
 //UPDATE ROUTE
-app.put("/blogs/:id", function(req, res){(
+app.put("/blogs/:id", function(req, res){
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
         if(err)
         {
@@ -105,10 +105,10 @@ app.put("/blogs/:id", function(req, res){(
             res.redirect("/blogs" + req.params.id)
         }
     })
-
+})
 
 //DELETE ROUTE
-app.delete("/blogs/:id", function(req, res){(
+app.delete("/blogs/:id", function(req, res){
     //destroy blog
     Blog.findByIdAndRemove(req.params.id, function(err){
         if(err)
@@ -119,7 +119,7 @@ app.delete("/blogs/:id", function(req, res){(
         {
             res.redirect("/blogs")
         }
-    }
+    })
 })
 
 
